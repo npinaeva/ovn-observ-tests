@@ -1,0 +1,17 @@
+apiVersion: policy.networking.k8s.io/v1alpha1
+kind: AdminNetworkPolicy
+metadata:
+  name: allow-egress-test
+spec:
+  priority: 10
+  subject:
+    namespaces: 
+      matchLabels:
+        kubernetes.io/metadata.name: test
+  egress:
+  - action: Allow
+    to:
+    - namespaces:
+        namespaceSelector:
+          matchLabels:
+            kubernetes.io/metadata.name: test
